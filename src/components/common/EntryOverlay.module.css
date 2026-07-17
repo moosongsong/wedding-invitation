@@ -1,0 +1,91 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  color: #f3ece0;
+  /* 어두운 화면 (진입 즉시 불투명하게 덮음 → 뒤 커버가 비치지 않도록) */
+  background: radial-gradient(circle at 50% 42%, #2c281f 0%, #15120d 100%);
+  transition: opacity 1.1s ease;
+}
+
+/* 터치 시 서서히 밝아지며(사라지며) 커버가 드러남 */
+.opening {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px;
+  transition: transform 1.2s ease, opacity 0.9s ease;
+}
+
+.opening .content {
+  transform: scale(1.05);
+  opacity: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-serif-en);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+}
+
+.names {
+  font-family: var(--font-myeongjo);
+  font-size: 27px;
+  letter-spacing: 0.06em;
+}
+
+.date {
+  font-family: var(--font-serif-en);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+}
+
+.guest {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(243, 236, 224, 0.22);
+  font-family: var(--font-myeongjo);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #f3ece0;
+}
+
+.guest b {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.hint {
+  margin-top: 40px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.hint::before {
+  content: '🔊 ';
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

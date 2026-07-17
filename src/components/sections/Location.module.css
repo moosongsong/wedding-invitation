@@ -1,0 +1,130 @@
+.venue {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.venueName {
+  font-family: var(--font-myeongjo);
+  font-size: 19px;
+}
+
+.venueHall {
+  font-size: 14px;
+  color: var(--color-text-soft);
+  margin-top: 4px;
+}
+
+.venueAddr {
+  font-size: 13.5px;
+  color: var(--color-text-faint);
+  margin-top: 6px;
+}
+
+.map {
+  position: relative;
+  max-width: 360px;
+  margin: 0 auto 14px;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.legend {
+  list-style: none;
+  max-width: 360px;
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.legend li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 10px;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+}
+
+.legendType {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.legendDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendName {
+  font-family: var(--font-myeongjo);
+  font-size: 14.5px;
+  color: var(--color-text-soft);
+}
+
+.mapButtons {
+  display: flex;
+  gap: 8px;
+  max-width: 360px;
+  margin: 0 auto 34px;
+}
+
+.mapBtn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  font-size: 13.5px;
+  color: var(--color-text-soft);
+  text-align: center;
+}
+
+.transports {
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.transport {
+  display: flex;
+  gap: 14px;
+}
+
+.tType {
+  flex-shrink: 0;
+  width: 52px;
+  font-family: var(--font-myeongjo);
+  font-size: 14px;
+  color: var(--color-accent-deep);
+  padding-top: 1px;
+}
+
+.tLines p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+}
+
+.tLines p:first-child {
+  color: var(--color-text);
+}

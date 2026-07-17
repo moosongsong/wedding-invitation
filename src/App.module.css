@@ -1,0 +1,8 @@
+.frame {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--color-bg);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+  overflow-x: hidden;
+}

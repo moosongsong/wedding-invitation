@@ -1,0 +1,35 @@
+.wrap {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  font-family: var(--font-serif-en);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--color-accent-deep);
+  text-transform: uppercase;
+}
+
+.divider {
+  width: 34px;
+  height: 1px;
+  background: var(--color-accent);
+  margin: 16px auto;
+  opacity: 0.6;
+}
+
+.title {
+  font-family: var(--font-myeongjo);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--color-text-soft);
+  letter-spacing: 0.02em;
+}

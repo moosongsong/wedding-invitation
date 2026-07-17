@@ -1,0 +1,95 @@
+:root {
+  /* 컬러 팔레트 - 밝고 따뜻한 옐로 베이지 톤 */
+  --color-bg: #fffdf6; /* 밝은 크림 (기본 섹션) */
+  --color-bg-alt: #f6ecd2; /* 노란 베이지 (교차 섹션) - bg 와 뚜렷하게 대비 */
+  --color-card: #ffffff;
+  --color-text: #44403a;
+  --color-text-soft: #746d5f;
+  --color-text-faint: #a89f8b;
+  --color-accent: #c6a862; /* 골든 베이지 */
+  --color-accent-deep: #9c8140; /* 딥 골드 (영문 제목/포인트) */
+  --color-line: #ece1c8;
+  --color-groom: #6b7f8a;
+  --color-bride: #b08a8a;
+
+  /* 폰트 */
+  --font-serif-ko: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  --font-myeongjo: 'Nanum Myeongjo', serif;
+  --font-serif-en: 'Cormorant Garamond', serif;
+
+  /* 레이아웃 */
+  --max-width: 460px;
+  --section-gap: 88px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-serif-ko);
+  color: var(--color-text);
+  background: #ffffff;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 스크롤 등장 애니메이션 (콘텐츠에만 적용, 배경은 항상 불투명).
+   transform 을 쓰면 position:fixed 모달의 기준이 뷰포트가 아닌 섹션으로 바뀌므로
+   opacity 페이드만 사용한다. */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+}
+
+/* 좁은 화면(실제 폰 등)에서는 등장 애니메이션을 끄고 콘텐츠를 항상 바로 보여준다. */
+@media (max-width: 600px) {
+  .reveal {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transition: none;
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#f7f4ef" />
+    <title>%VITE_GROOM_NAME% ♥ %VITE_BRIDE_NAME%의 결혼식에 초대합니다</title>
+
+    <!-- favicon (인라인 SVG, 경로 무관하게 동작) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- 카카오톡/SNS 공유용 오픈그래프 메타태그 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="%VITE_GROOM_NAME% ♥ %VITE_BRIDE_NAME% 결혼합니다" />
+    <meta property="og:description" content="%VITE_OG_DESC%" />
+    <meta property="og:image" content="https://images.theirmood.com/resources/46097/card/mIsKu8Q1qy/PdFW95rS5d.png?f=jpg&w=1200" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1600" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@300;400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 네이버 지도 JS API (Naver Cloud Platform > Maps).
+         키는 .env 의 VITE_NAVER_MAP_KEY 로 주입됩니다. (빌드 시 %VITE_NAVER_MAP_KEY% 치환) -->
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=%VITE_NAVER_MAP_KEY%"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

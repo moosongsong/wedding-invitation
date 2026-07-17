@@ -1,0 +1,104 @@
+.intro {
+  max-width: 360px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--color-text-soft);
+  margin-bottom: 8px;
+}
+
+.intro p:last-child {
+  margin-bottom: 0;
+}
+
+.intro strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.blocks {
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.block {
+  background: var(--color-card);
+  border-radius: 14px;
+  padding: 20px 20px;
+  box-shadow: 0 6px 18px rgba(61, 58, 52, 0.05);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.title {
+  font-family: var(--font-myeongjo);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.items li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+}
+
+/* 불릿 점 */
+.items li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.items strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.outro {
+  max-width: 360px;
+  margin: 34px auto 0;
+  text-align: center;
+}
+
+.outro p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--color-text-soft);
+}
+
+.outro strong {
+  font-weight: 600;
+  color: var(--color-accent-deep);
+}

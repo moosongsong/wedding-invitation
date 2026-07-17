@@ -1,0 +1,123 @@
+.dateLabel {
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+
+.dateLabelEn {
+  text-align: center;
+  margin-bottom: 32px;
+  font-family: var(--font-serif-en);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--color-text-faint);
+}
+
+/* 달력 */
+.calendar {
+  max-width: 320px;
+  margin: 0 auto;
+  background: var(--color-card);
+  border-radius: 16px;
+  padding: 22px 18px;
+  box-shadow: 0 10px 30px rgba(61, 58, 52, 0.06);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.dow {
+  font-family: var(--font-serif-en);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--color-text-faint);
+  padding-bottom: 10px;
+}
+
+.dow.sun {
+  color: var(--color-bride);
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--color-text-soft);
+  border-radius: 50%;
+}
+
+.day.sun {
+  color: var(--color-bride);
+}
+
+.empty {
+  aspect-ratio: 1;
+}
+
+.wedding {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+  background: var(--color-accent);
+}
+
+.wedding::after {
+  content: '♥';
+  position: absolute;
+  bottom: -14px;
+  font-size: 9px;
+  color: var(--color-bride);
+}
+
+/* 카운트다운 */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 320px;
+  margin: 34px auto 0;
+}
+
+.unit {
+  background: var(--color-card);
+  border-radius: 12px;
+  padding: 14px 0;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(61, 58, 52, 0.05);
+}
+
+.num {
+  font-family: var(--font-serif-en);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  line-height: 1;
+}
+
+.label {
+  margin-top: 6px;
+  font-family: var(--font-serif-en);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--color-text-faint);
+}
+
+.dday {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--color-text-soft);
+}
+
+.dday b {
+  color: var(--color-accent-deep);
+  font-weight: 600;
+}

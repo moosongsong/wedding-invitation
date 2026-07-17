@@ -1,0 +1,117 @@
+.closing {
+  position: relative;
+  padding: 96px 28px 60px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(200deg, #b79a5b 0%, #8a7038 100%);
+  overflow: hidden;
+}
+
+.closing::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.15),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.quote {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+.quoteAuthor {
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.8;
+  letter-spacing: 0.04em;
+}
+
+.names {
+  margin: 46px 0 6px;
+  font-family: var(--font-serif-en);
+  font-size: 26px;
+  letter-spacing: 0.14em;
+}
+
+.date {
+  font-family: var(--font-serif-en);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  margin: 46px auto 0;
+}
+
+.kakao,
+.copy {
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.kakao {
+  background: #fee500;
+  color: #3c1e1e;
+}
+
+.copy {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer {
+  margin-top: 46px;
+  font-family: var(--font-serif-en);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: rgba(20, 19, 16, 0.9);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  animation: toastIn 0.25s ease;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

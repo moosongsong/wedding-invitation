@@ -1,0 +1,11 @@
+.section {
+  padding: var(--section-gap) 28px;
+}
+
+.alt {
+  background: var(--color-bg-alt);
+}
+
+.inner {
+  max-width: 100%;
+}

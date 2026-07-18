@@ -90,7 +90,7 @@ export const wedding: WeddingInfo = {
 export const venues: VenuePoint[] = [
   {
     type: '예식장',
-    name: env.VITE_CEREMONY_NAME || '예식장',
+    name: env.VITE_VENUE_HALL || '예식장',
     lat: Number(env.VITE_CEREMONY_LAT) || 37.5665,
     lng: Number(env.VITE_CEREMONY_LNG) || 126.978,
   },

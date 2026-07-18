@@ -29,42 +29,40 @@ jobs:
 
       - name: Build
         env:
-          # 리포지토리 Settings > Secrets and variables > Actions 에 등록한 값에서 주입
+          # 리포지토리 Settings > Secrets and variables > Actions > Variables 에 등록한 값에서 주입
           # (미등록 시 코드의 예시값이 표시됨)
-          VITE_NAVER_MAP_KEY: ${{ secrets.VITE_NAVER_MAP_KEY }}
-          VITE_WEDDING_DATE: ${{ secrets.VITE_WEDDING_DATE }}
-          VITE_VENUE_NAME: ${{ secrets.VITE_VENUE_NAME }}
-          VITE_VENUE_HALL: ${{ secrets.VITE_VENUE_HALL }}
-          VITE_VENUE_ADDRESS: ${{ secrets.VITE_VENUE_ADDRESS }}
-          VITE_CEREMONY_NAME: ${{ secrets.VITE_CEREMONY_NAME }}
-          VITE_CEREMONY_LAT: ${{ secrets.VITE_CEREMONY_LAT }}
-          VITE_CEREMONY_LNG: ${{ secrets.VITE_CEREMONY_LNG }}
-          VITE_RECEPTION_NAME: ${{ secrets.VITE_RECEPTION_NAME }}
-          VITE_RECEPTION_LAT: ${{ secrets.VITE_RECEPTION_LAT }}
-          VITE_RECEPTION_LNG: ${{ secrets.VITE_RECEPTION_LNG }}
-          VITE_OG_DESC: ${{ secrets.VITE_OG_DESC }}
-          VITE_GROOM_NAME: ${{ secrets.VITE_GROOM_NAME }}
-          VITE_GROOM_NAME_EN: ${{ secrets.VITE_GROOM_NAME_EN }}
-          VITE_GROOM_FIRST: ${{ secrets.VITE_GROOM_FIRST }}
-          VITE_BRIDE_NAME: ${{ secrets.VITE_BRIDE_NAME }}
-          VITE_BRIDE_NAME_EN: ${{ secrets.VITE_BRIDE_NAME_EN }}
-          VITE_BRIDE_FIRST: ${{ secrets.VITE_BRIDE_FIRST }}
-          VITE_GROOM_FATHER: ${{ secrets.VITE_GROOM_FATHER }}
-          VITE_GROOM_MOTHER: ${{ secrets.VITE_GROOM_MOTHER }}
-          VITE_BRIDE_FATHER: ${{ secrets.VITE_BRIDE_FATHER }}
-          VITE_BRIDE_MOTHER: ${{ secrets.VITE_BRIDE_MOTHER }}
-          VITE_ACCOUNT_GROOM: ${{ secrets.VITE_ACCOUNT_GROOM }}
-          VITE_ACCOUNT_GROOM_FATHER: ${{ secrets.VITE_ACCOUNT_GROOM_FATHER }}
-          VITE_ACCOUNT_GROOM_MOTHER: ${{ secrets.VITE_ACCOUNT_GROOM_MOTHER }}
-          VITE_ACCOUNT_BRIDE: ${{ secrets.VITE_ACCOUNT_BRIDE }}
-          VITE_ACCOUNT_BRIDE_FATHER: ${{ secrets.VITE_ACCOUNT_BRIDE_FATHER }}
-          VITE_ACCOUNT_BRIDE_MOTHER: ${{ secrets.VITE_ACCOUNT_BRIDE_MOTHER }}
-          VITE_PHONE_GROOM: ${{ secrets.VITE_PHONE_GROOM }}
-          VITE_PHONE_GROOM_FATHER: ${{ secrets.VITE_PHONE_GROOM_FATHER }}
-          VITE_PHONE_GROOM_MOTHER: ${{ secrets.VITE_PHONE_GROOM_MOTHER }}
-          VITE_PHONE_BRIDE: ${{ secrets.VITE_PHONE_BRIDE }}
-          VITE_PHONE_BRIDE_FATHER: ${{ secrets.VITE_PHONE_BRIDE_FATHER }}
-          VITE_PHONE_BRIDE_MOTHER: ${{ secrets.VITE_PHONE_BRIDE_MOTHER }}
+          VITE_NAVER_MAP_KEY: ${{ vars.VITE_NAVER_MAP_KEY }}
+          VITE_WEDDING_DATE: ${{ vars.VITE_WEDDING_DATE }}
+          VITE_VENUE_NAME: ${{ vars.VITE_VENUE_NAME }}
+          VITE_VENUE_HALL: ${{ vars.VITE_VENUE_HALL }}
+          VITE_VENUE_ADDRESS: ${{ vars.VITE_VENUE_ADDRESS }}
+          VITE_CEREMONY_LAT: ${{ vars.VITE_CEREMONY_LAT }}
+          VITE_CEREMONY_LNG: ${{ vars.VITE_CEREMONY_LNG }}
+          VITE_RECEPTION_NAME: ${{ vars.VITE_RECEPTION_NAME }}
+          VITE_RECEPTION_LAT: ${{ vars.VITE_RECEPTION_LAT }}
+          VITE_RECEPTION_LNG: ${{ vars.VITE_RECEPTION_LNG }}
+          VITE_GROOM_NAME: ${{ vars.VITE_GROOM_NAME }}
+          VITE_GROOM_NAME_EN: ${{ vars.VITE_GROOM_NAME_EN }}
+          VITE_GROOM_FIRST: ${{ vars.VITE_GROOM_FIRST }}
+          VITE_BRIDE_NAME: ${{ vars.VITE_BRIDE_NAME }}
+          VITE_BRIDE_NAME_EN: ${{ vars.VITE_BRIDE_NAME_EN }}
+          VITE_BRIDE_FIRST: ${{ vars.VITE_BRIDE_FIRST }}
+          VITE_GROOM_FATHER: ${{ vars.VITE_GROOM_FATHER }}
+          VITE_GROOM_MOTHER: ${{ vars.VITE_GROOM_MOTHER }}
+          VITE_BRIDE_FATHER: ${{ vars.VITE_BRIDE_FATHER }}
+          VITE_BRIDE_MOTHER: ${{ vars.VITE_BRIDE_MOTHER }}
+          VITE_ACCOUNT_GROOM: ${{ vars.VITE_ACCOUNT_GROOM }}
+          VITE_ACCOUNT_GROOM_FATHER: ${{ vars.VITE_ACCOUNT_GROOM_FATHER }}
+          VITE_ACCOUNT_GROOM_MOTHER: ${{ vars.VITE_ACCOUNT_GROOM_MOTHER }}
+          VITE_ACCOUNT_BRIDE: ${{ vars.VITE_ACCOUNT_BRIDE }}
+          VITE_ACCOUNT_BRIDE_FATHER: ${{ vars.VITE_ACCOUNT_BRIDE_FATHER }}
+          VITE_ACCOUNT_BRIDE_MOTHER: ${{ vars.VITE_ACCOUNT_BRIDE_MOTHER }}
+          VITE_PHONE_GROOM: ${{ vars.VITE_PHONE_GROOM }}
+          VITE_PHONE_GROOM_FATHER: ${{ vars.VITE_PHONE_GROOM_FATHER }}
+          VITE_PHONE_GROOM_MOTHER: ${{ vars.VITE_PHONE_GROOM_MOTHER }}
+          VITE_PHONE_BRIDE: ${{ vars.VITE_PHONE_BRIDE }}
+          VITE_PHONE_BRIDE_FATHER: ${{ vars.VITE_PHONE_BRIDE_FATHER }}
+          VITE_PHONE_BRIDE_MOTHER: ${{ vars.VITE_PHONE_BRIDE_MOTHER }}
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

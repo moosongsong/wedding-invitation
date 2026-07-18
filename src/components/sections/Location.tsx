@@ -66,7 +66,6 @@ export function Location() {
   const maps: { label: string; url?: string; onClick?: () => void }[] = [
     { label: '카카오맵', url: `https://map.kakao.com/?q=${query}` },
     { label: '네이버지도', onClick: openNaverMap },
-    { label: '티맵', url: `https://tmap.life/route?goalname=${query}` },
   ];
 
   // 네이버 지도 로드 후 예식장·피로연장 마커 표시 + 두 지점이 모두 보이도록 범위 조정

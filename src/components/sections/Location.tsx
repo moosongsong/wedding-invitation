@@ -19,36 +19,37 @@ function markerContent(label: string, color: string) {
 // 한국민속촌 공식 네이버 지도 단축링크 (앱 미설치 시 웹 폴백 대상)
 const NAVER_WEB_URL = 'https://naver.me/x8tpn3OO';
 
-// 네이버지도: 앱이 있으면 앱 실행, 없으면 웹으로 연결
-function openNaverMap() {
-  const { lat, lng, name } = venues[0];
-  const appName = 'moosongsong.github.io';
+// 지도 앱 딥링크를 실행하되, 앱이 없으면 웹으로 연결한다.
+// - Android: intent:// (browser_fallback_url 로 OS 가 미설치 시 자동 웹 전환)
+// - iOS: 커스텀 스킴 시도 후, 전환되지 않으면(타이머 생존) 웹으로 폴백
+// - 데스크톱: 웹으로만 연결
+function openMapApp(opts: {
+  scheme: string; // iOS 스킴 URL (예: 'nmap://place?...')
+  path: string; // intent 경로 (스킴 제외, 예: 'place?...')
+  androidScheme: string; // intent 의 scheme (예: 'nmap')
+  androidPackage: string; // Android 패키지명
+  webUrl: string; // 웹 폴백 URL
+}) {
   const ua = navigator.userAgent;
   const isAndroid = /android/i.test(ua);
   const isiOS = /iphone|ipad|ipod/i.test(ua);
 
-  // 데스크톱 등 모바일이 아니면 웹으로만 연결
   if (!isAndroid && !isiOS) {
-    window.open(NAVER_WEB_URL, '_blank', 'noopener');
+    window.open(opts.webUrl, '_blank', 'noopener');
     return;
   }
-
-  const placeQuery = `place?lat=${lat}&lng=${lng}&name=${encodeURIComponent(name)}&appname=${appName}`;
 
   if (isAndroid) {
-    // 미설치 시 browser_fallback_url 로 OS 가 자동 웹 전환
     window.location.href =
-      `intent://${placeQuery}#Intent;scheme=nmap;package=com.nhn.android.nmap;` +
-      `S.browser_fallback_url=${encodeURIComponent(NAVER_WEB_URL)};end`;
+      `intent://${opts.path}#Intent;scheme=${opts.androidScheme};package=${opts.androidPackage};` +
+      `S.browser_fallback_url=${encodeURIComponent(opts.webUrl)};end`;
     return;
   }
 
-  // iOS: 앱 스킴 시도 후, 전환되지 않으면(타이머 생존) 웹으로 폴백
   const start = Date.now();
   const timer = window.setTimeout(() => {
-    if (Date.now() - start < 1800) window.location.href = NAVER_WEB_URL;
+    if (Date.now() - start < 1800) window.location.href = opts.webUrl;
   }, 1200);
-  // 앱으로 전환되면 페이지가 백그라운드로 → 폴백 취소
   window.addEventListener(
     'visibilitychange',
     () => {
@@ -56,15 +57,42 @@ function openNaverMap() {
     },
     { once: true },
   );
-  window.location.href = `nmap://${placeQuery}`;
+  window.location.href = opts.scheme;
+}
+
+// 네이버지도: 앱이 있으면 앱 실행, 없으면 웹으로 연결
+function openNaverMap() {
+  const { lat, lng, name } = venues[0];
+  const path = `place?lat=${lat}&lng=${lng}&name=${encodeURIComponent(name)}&appname=moosongsong.github.io`;
+  openMapApp({
+    scheme: `nmap://${path}`,
+    path,
+    androidScheme: 'nmap',
+    androidPackage: 'com.nhn.android.nmap',
+    webUrl: NAVER_WEB_URL,
+  });
+}
+
+// 카카오맵: 앱이 있으면 앱 실행, 없으면 웹으로 연결
+function openKakaoMap(webUrl: string) {
+  const { lat, lng } = venues[0];
+  const path = `look?p=${lat},${lng}`;
+  openMapApp({
+    scheme: `kakaomap://${path}`,
+    path,
+    androidScheme: 'kakaomap',
+    androidPackage: 'net.daum.android.map',
+    webUrl,
+  });
 }
 
 // 예식장 · 피로연장 위치 및 오시는 길 안내
 export function Location() {
   const mapRef = useRef<HTMLDivElement>(null);
   const query = encodeURIComponent(`${wedding.venueName} ${wedding.venueAddress}`);
+  const kakaoWebUrl = `https://map.kakao.com/?q=${query}`;
   const maps: { label: string; url?: string; onClick?: () => void }[] = [
-    { label: '카카오맵', url: `https://map.kakao.com/?q=${query}` },
+    { label: '카카오맵', onClick: () => openKakaoMap(kakaoWebUrl) },
     { label: '네이버지도', onClick: openNaverMap },
   ];
 

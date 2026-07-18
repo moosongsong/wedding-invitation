@@ -88,6 +88,10 @@
 
 .mapBtn {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   padding: 12px;
   border-radius: 10px;
   background: var(--color-card);
@@ -98,6 +102,16 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+.mapBtnLogo {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.mapBtnLogo svg {
+  display: block;
+  border-radius: 5px;
 }
 
 .transports {

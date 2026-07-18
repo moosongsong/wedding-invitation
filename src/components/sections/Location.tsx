@@ -8,6 +8,27 @@ import styles from './Location.module.css';
 // 장소별 마커 색상 (예식장 / 피로연장)
 const VENUE_COLORS = ['#9c8140', '#6b7f8a'];
 
+// 지도 버튼 브랜드 로고 (인라인 SVG — 외부 이미지 의존 없음)
+const KakaoLogo = () => (
+  <svg viewBox="0 0 40 40" width="18" height="18" aria-hidden="true">
+    <rect width="40" height="40" rx="9" fill="#FEE500" />
+    <path
+      d="M20 10.5c-5.5 0-9.9 3.4-9.9 7.7 0 2.7 1.8 5.1 4.6 6.5-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.3-.2 3-2 4.1-2.8.5.1 1.1.1 1.6.1 5.5 0 9.9-3.4 9.9-7.7S25.5 10.5 20 10.5z"
+      fill="#3C1E1E"
+    />
+  </svg>
+);
+
+const NaverLogo = () => (
+  <svg viewBox="0 0 40 40" width="18" height="18" aria-hidden="true">
+    <rect width="40" height="40" rx="9" fill="#03C75A" />
+    <path
+      d="M12 11h4.6l6.8 9.2V11H28v18h-4.6l-6.8-9.2V29H12z"
+      fill="#fff"
+    />
+  </svg>
+);
+
 // 라벨이 붙은 커스텀 마커 HTML
 function markerContent(label: string, color: string) {
   return `<div style="transform:translate(-50%,-100%);text-align:center;">
@@ -89,9 +110,14 @@ function openKakaoMap(webUrl: string) {
 export function Location() {
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoWebUrl = `https://map.kakao.com/?q=${encodeURIComponent(wedding.venueName)}`;
-  const maps: { label: string; url?: string; onClick?: () => void }[] = [
-    { label: '카카오맵', onClick: () => openKakaoMap(kakaoWebUrl) },
-    { label: '네이버지도', onClick: openNaverMap },
+  const maps: {
+    label: string;
+    logo: JSX.Element;
+    url?: string;
+    onClick?: () => void;
+  }[] = [
+    { label: '카카오맵', logo: <KakaoLogo />, onClick: () => openKakaoMap(kakaoWebUrl) },
+    { label: '네이버지도', logo: <NaverLogo />, onClick: openNaverMap },
   ];
 
   // 네이버 지도 로드 후 예식장·피로연장 마커 표시 + 두 지점이 모두 보이도록 범위 조정
@@ -167,6 +193,7 @@ export function Location() {
               className={styles.mapBtn}
               onClick={m.onClick}
             >
+              <span className={styles.mapBtnLogo}>{m.logo}</span>
               {m.label}
             </button>
           ) : (
@@ -177,6 +204,7 @@ export function Location() {
               target="_blank"
               rel="noreferrer"
             >
+              <span className={styles.mapBtnLogo}>{m.logo}</span>
               {m.label}
             </a>
           ),

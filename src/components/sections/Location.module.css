@@ -39,44 +39,44 @@
 
 .legend {
   list-style: none;
-  max-width: 360px;
-  margin: 0 auto 18px;
+  max-width: 320px;
+  margin: 2px auto 22px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
 }
 
 .legend li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 13px 10px;
-  background: var(--color-card);
-  border: 1px solid var(--color-line);
-  border-radius: 12px;
+  gap: 9px;
+  padding: 4px 12px;
+}
+
+.legend li:first-child {
+  border-right: 1px solid var(--color-line);
 }
 
 .legendType {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--color-text-faint);
 }
 
 .legendDot {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .legendName {
   font-family: var(--font-myeongjo);
-  font-size: 14.5px;
-  color: var(--color-text-soft);
+  font-size: 17.5px;
+  color: var(--color-text);
 }
 
 .mapButtons {

@@ -16,14 +16,56 @@ function markerContent(label: string, color: string) {
   </div>`;
 }
 
+// 한국민속촌 공식 네이버 지도 단축링크 (앱 미설치 시 웹 폴백 대상)
+const NAVER_WEB_URL = 'https://naver.me/x8tpn3OO';
+
+// 네이버지도: 앱이 있으면 앱 실행, 없으면 웹으로 연결
+function openNaverMap() {
+  const { lat, lng, name } = venues[0];
+  const appName = 'moosongsong.github.io';
+  const ua = navigator.userAgent;
+  const isAndroid = /android/i.test(ua);
+  const isiOS = /iphone|ipad|ipod/i.test(ua);
+
+  // 데스크톱 등 모바일이 아니면 웹으로만 연결
+  if (!isAndroid && !isiOS) {
+    window.open(NAVER_WEB_URL, '_blank', 'noopener');
+    return;
+  }
+
+  const placeQuery = `place?lat=${lat}&lng=${lng}&name=${encodeURIComponent(name)}&appname=${appName}`;
+
+  if (isAndroid) {
+    // 미설치 시 browser_fallback_url 로 OS 가 자동 웹 전환
+    window.location.href =
+      `intent://${placeQuery}#Intent;scheme=nmap;package=com.nhn.android.nmap;` +
+      `S.browser_fallback_url=${encodeURIComponent(NAVER_WEB_URL)};end`;
+    return;
+  }
+
+  // iOS: 앱 스킴 시도 후, 전환되지 않으면(타이머 생존) 웹으로 폴백
+  const start = Date.now();
+  const timer = window.setTimeout(() => {
+    if (Date.now() - start < 1800) window.location.href = NAVER_WEB_URL;
+  }, 1200);
+  // 앱으로 전환되면 페이지가 백그라운드로 → 폴백 취소
+  window.addEventListener(
+    'visibilitychange',
+    () => {
+      if (document.hidden) window.clearTimeout(timer);
+    },
+    { once: true },
+  );
+  window.location.href = `nmap://${placeQuery}`;
+}
+
 // 예식장 · 피로연장 위치 및 오시는 길 안내
 export function Location() {
   const mapRef = useRef<HTMLDivElement>(null);
   const query = encodeURIComponent(`${wedding.venueName} ${wedding.venueAddress}`);
-  const maps = [
+  const maps: { label: string; url?: string; onClick?: () => void }[] = [
     { label: '카카오맵', url: `https://map.kakao.com/?q=${query}` },
-    // 한국민속촌 공식 네이버 지도 단축링크
-    { label: '네이버지도', url: 'https://naver.me/x8tpn3OO' },
+    { label: '네이버지도', onClick: openNaverMap },
     { label: '티맵', url: `https://tmap.life/route?goalname=${query}` },
   ];
 
@@ -92,17 +134,28 @@ export function Location() {
       </ul>
 
       <div className={styles.mapButtons}>
-        {maps.map((m) => (
-          <a
-            key={m.label}
-            className={styles.mapBtn}
-            href={m.url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {m.label}
-          </a>
-        ))}
+        {maps.map((m) =>
+          m.onClick ? (
+            <button
+              key={m.label}
+              type="button"
+              className={styles.mapBtn}
+              onClick={m.onClick}
+            >
+              {m.label}
+            </button>
+          ) : (
+            <a
+              key={m.label}
+              className={styles.mapBtn}
+              href={m.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {m.label}
+            </a>
+          ),
+        )}
       </div>
 
       <div className={styles.transports}>

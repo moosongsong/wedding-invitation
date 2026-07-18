@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// @types/node 미설치 환경에서도 타입체크가 통과하도록 최소 선언 (런타임엔 node 전역 사용)
+declare const process: { cwd(): string; env: Record<string, string | undefined> };
+
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 // 공유(og) 설명 문구를 기존 날짜·장소 변수로 조합한다.
@@ -24,7 +27,7 @@ function ogDescPlugin(env: Record<string, string>): Plugin {
     name: 'og-desc',
     enforce: 'pre',
     transformIndexHtml(html) {
-      return html.replaceAll('%VITE_OG_DESC%', buildOgDesc(env));
+      return html.split('__OG_DESC__').join(buildOgDesc(env));
     },
   };
 }

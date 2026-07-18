@@ -73,10 +73,9 @@ function openNaverMap() {
   });
 }
 
-// 카카오맵: 앱이 있으면 앱 실행, 없으면 웹으로 연결
+// 카카오맵: 앱이 있으면 앱 실행, 없으면 웹으로 연결 (장소명으로 검색)
 function openKakaoMap(webUrl: string) {
-  const { lat, lng } = venues[0];
-  const path = `look?p=${lat},${lng}`;
+  const path = `search?q=${encodeURIComponent(wedding.venueName)}`;
   openMapApp({
     scheme: `kakaomap://${path}`,
     path,
@@ -89,8 +88,7 @@ function openKakaoMap(webUrl: string) {
 // 예식장 · 피로연장 위치 및 오시는 길 안내
 export function Location() {
   const mapRef = useRef<HTMLDivElement>(null);
-  const query = encodeURIComponent(`${wedding.venueName} ${wedding.venueAddress}`);
-  const kakaoWebUrl = `https://map.kakao.com/?q=${query}`;
+  const kakaoWebUrl = `https://map.kakao.com/?q=${encodeURIComponent(wedding.venueName)}`;
   const maps: { label: string; url?: string; onClick?: () => void }[] = [
     { label: '카카오맵', onClick: () => openKakaoMap(kakaoWebUrl) },
     { label: '네이버지도', onClick: openNaverMap },

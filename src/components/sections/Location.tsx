@@ -81,10 +81,9 @@ function openMapApp(opts: {
   window.location.href = opts.scheme;
 }
 
-// 네이버지도: 앱이 있으면 앱 실행, 없으면 웹으로 연결
+// 네이버지도: 앱이 있으면 앱 실행, 없으면 웹으로 연결 (장소명으로 검색)
 function openNaverMap() {
-  const { lat, lng, name } = venues[0];
-  const path = `place?lat=${lat}&lng=${lng}&name=${encodeURIComponent(name)}&appname=moosongsong.github.io`;
+  const path = `search?query=${encodeURIComponent(wedding.venueName)}&appname=moosongsong.github.io`;
   openMapApp({
     scheme: `nmap://${path}`,
     path,

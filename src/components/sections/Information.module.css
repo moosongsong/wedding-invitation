@@ -9,6 +9,9 @@
   line-height: 1.9;
   color: var(--color-text-soft);
   margin-bottom: 8px;
+  /* 한글이 단어 중간에서 끊기지 않도록 어절 단위 줄바꿈 + 줄 길이 균형 */
+  word-break: keep-all;
+  text-wrap: balance;
 }
 
 .intro p:last-child {
@@ -67,6 +70,7 @@
   font-size: 13.5px;
   line-height: 1.75;
   color: var(--color-text-soft);
+  word-break: keep-all;
 }
 
 /* 불릿 점 */
@@ -96,6 +100,8 @@
   font-size: 14px;
   line-height: 1.95;
   color: var(--color-text-soft);
+  word-break: keep-all;
+  text-wrap: balance;
 }
 
 .outro strong {
